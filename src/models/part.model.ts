@@ -27,6 +27,6 @@ const partSchema = new mongoose.Schema(
   }
 );
 
-const partModel = mongoose.model<PartDocument>('Part', partSchema);
+const PartModel = mongoose.model<PartDocument>('Part', partSchema);
 
-export default partModel;
+export default PartModel;

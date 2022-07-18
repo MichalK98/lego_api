@@ -1,8 +1,8 @@
-import { Request, response, Response } from 'express';
+import { Request, Response } from 'express';
 import { CreatePartInput } from '../schema/part.schema';
 import { createPart } from '../service/part.service';
 
-export async function CreateProductHandler(
+export async function CreatePartHandler(
   req: Request<{}, {}, CreatePartInput['body']>,
   res: Response
 ) {

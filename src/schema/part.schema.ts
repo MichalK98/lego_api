@@ -11,8 +11,8 @@ const payload = {
   })
 };
 
-export const CreatePartSchema = object({
+export const createPartSchema = object({
   ...payload
 });
 
-export type CreatePartInput = TypeOf<typeof CreatePartSchema>;
+export type CreatePartInput = TypeOf<typeof createPartSchema>;
