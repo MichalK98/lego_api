@@ -19,8 +19,15 @@ const partSchema = new mongoose.Schema(
       unique: true,
       default: () => `part_${uuid()}`
     },
-    title: { type: String, require: true },
-    image: { type: String, require: true }
+    title: {
+      type: String,
+      require: true,
+      unique: true
+    },
+    image: {
+      type: String,
+      require: true
+    }
   },
   {
     timestamps: true
