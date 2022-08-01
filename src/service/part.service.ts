@@ -79,3 +79,7 @@ export async function findAndUpdatePart(
 ) {
   return PartModel.findOneAndUpdate(query, update, options);
 }
+
+export async function deletePart(query: FilterQuery<PartDocument>) {
+  return PartModel.deleteOne(query);
+}

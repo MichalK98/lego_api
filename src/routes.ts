@@ -2,6 +2,7 @@ import { Express, Request, Response } from 'express';
 import validateResource from './middleware/validateResource';
 import {
   createPartHandler,
+  deletePartHandler,
   readPartHandler,
   updatePartHandler
 } from './controller/part.controller';
@@ -21,6 +22,8 @@ function routes(app: Express) {
     validateResource(updatePartSchema),
     updatePartHandler
   );
+
+  app.delete('/api/parts/:partId', deletePartHandler);
 }
 
 export default routes;

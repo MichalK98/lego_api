@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { CreatePartInput, UpdatePartInput } from '../schema/part.schema';
 import {
   createPart,
+  deletePart,
   findAndUpdatePart,
   findPart,
   getParts
@@ -40,4 +41,19 @@ export async function updatePartHandler(
   const updatePart = await findAndUpdatePart({ partId }, update, { new: true });
 
   return res.send(updatePart);
+}
+
+export async function deletePartHandler(
+  req: Request<UpdatePartInput['params']>,
+  res: Response
+) {
+  const partId = req.params.partId;
+
+  const part = await findPart({ partId });
+
+  if (!part) return res.sendStatus(404);
+
+  await deletePart({ partId });
+
+  return res.sendStatus(200);
 }
