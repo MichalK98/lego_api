@@ -1,7 +1,10 @@
-import { count } from 'console';
 import { Omit } from 'lodash';
-import { DocumentDefinition } from 'mongoose';
-import { nullable } from 'zod';
+import {
+  DocumentDefinition,
+  FilterQuery,
+  QueryOptions,
+  UpdateQuery
+} from 'mongoose';
 import PartModel, { PartDocument } from '../models/part.model';
 import { PartResponse } from '../types';
 
@@ -35,7 +38,6 @@ export async function getParts(query: any) {
       for (const [key, value] of Object.entries(query)) {
         if (key !== 'page') {
           path += `&${key}=${value}`;
-          console.log(key, path);
         }
       }
     }
@@ -61,4 +63,19 @@ export async function getParts(query: any) {
   };
 
   return response;
+}
+
+export async function findPart(
+  query: FilterQuery<PartDocument>,
+  options: QueryOptions = { lean: true }
+) {
+  return PartModel.findOne(query, {}, options);
+}
+
+export async function findAndUpdatePart(
+  query: FilterQuery<PartDocument>,
+  update: UpdateQuery<PartDocument>,
+  options: QueryOptions
+) {
+  return PartModel.findOneAndUpdate(query, update, options);
 }

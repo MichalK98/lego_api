@@ -1,6 +1,11 @@
 import { Request, Response } from 'express';
-import { CreatePartInput } from '../schema/part.schema';
-import { createPart, getParts } from '../service/part.service';
+import { CreatePartInput, UpdatePartInput } from '../schema/part.schema';
+import {
+  createPart,
+  findAndUpdatePart,
+  findPart,
+  getParts
+} from '../service/part.service';
 
 export async function createPartHandler(
   req: Request<{}, {}, CreatePartInput['body']>,
@@ -19,4 +24,20 @@ export async function readPartHandler(req: Request, res: Response) {
   const parts = await getParts(query);
 
   return res.send(parts);
+}
+
+export async function updatePartHandler(
+  req: Request<UpdatePartInput['params']>,
+  res: Response
+) {
+  const partId = req.params.partId;
+  const update = req.body;
+
+  const part = await findPart({ partId });
+
+  if (!part) return res.sendStatus(404);
+
+  const updatePart = await findAndUpdatePart({ partId }, update, { new: true });
+
+  return res.send(updatePart);
 }
