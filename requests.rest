@@ -1,0 +1,21 @@
+POST http://localhost:1337/login
+Content-Type: application/json
+
+{
+  "username": "Michal"
+}
+
+###
+
+POST http://localhost:1337/token
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTWljaGFsIiwiaWF0IjoxNjYxMTY5Njg0fQ.3kuU1zOgjAJ15n6rU49vgthyw3gHRuCGbbS9oslKgK0"
+}
+
+###
+
+GET http://localhost:1337/api/parts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTWljaGFsIiwiaWF0IjoxNjYxMTY5ODgzLCJleHAiOjE2NjExNjk4OTh9.F4h4uAtZMbD3Ybl3Ae2m0UCuM_Bu92DZqzL1MAE5xnc
+
