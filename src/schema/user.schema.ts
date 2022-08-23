@@ -5,7 +5,9 @@ const payload = {
     username: string({
       required_error: 'Username is required'
     }),
-    token: string()
+    token: string({
+      required_error: 'Token is required'
+    })
   })
 };
 

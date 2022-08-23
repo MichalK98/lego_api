@@ -1,3 +1,25 @@
+POST http://localhost:1337/api/users
+Content-Type: application/json
+
+{
+  "username": "Testasdekrsasdasassdad",
+  "token": "sadsakasd"
+}
+
+
+###
+
+POST http://localhost:1337/api/parts
+Content-Type: application/json
+
+{
+  "title": "Part#1",
+  "image": "www..."
+}
+
+
+###
+
 POST http://localhost:1337/login
 Content-Type: application/json
 
