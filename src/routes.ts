@@ -2,7 +2,7 @@ import 'dotenv/config';
 import { Express, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import validateResource from './middleware/validateResource';
-import authentizeToken from './middleware/authentizeToken';
+import auth from './middleware/auth';
 import generateAccessToken from './utils/generateAccessToken';
 import {
   createPartHandler,
@@ -10,16 +10,20 @@ import {
   readPartHandler,
   updatePartHandler
 } from './controller/part.controller';
+import { createUserHandler } from './controller/user.controller';
 import { createPartSchema, updatePartSchema } from './schema/part.schema';
 
 function routes(app: Express) {
-  /* Part Routes */
+  /* Healthcheck */
   app.get('/healthcheck', (req: Request, res: Response) => res.sendStatus(200));
+
+  /* User Routes */
+  app.post('/api/users', createUserHandler);
 
   /* Part Routes */
   app.post('/api/parts', validateResource(createPartSchema), createPartHandler);
 
-  app.get('/api/parts', authentizeToken, readPartHandler);
+  app.get('/api/parts', auth, readPartHandler);
 
   app.put(
     '/api/parts/:partId',
